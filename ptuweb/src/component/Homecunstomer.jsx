@@ -1,0 +1,87 @@
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Nav from "./Nav";
+import '../Css/Homes.css'
+import { Link } from "react-router-dom";
+
+function Homeemployee() {
+  const params = useParams();
+  const id = params.id;
+  const [data, setData] = useState({
+    assess_right:"",
+    id_member:"",
+    fname: "",
+    surname: "",
+    username: "",
+    tel_member: "",
+    password: "",
+
+  });
+  useEffect(() => {
+    LoadData();
+  }, [ params.id]);
+  const LoadData = async () => {
+    axios
+      .get("http://localhost:3001/member/" + id)
+      .then((res) => {
+        setData(res.data[0]);
+        console.log(res.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    fetch("http://localhost:3001/authen", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((Response) => Response.json())
+      .then((data) => {
+        if (data.status == "ok") {
+          console.log("authen sucess");
+        } else {
+          console.log("authen failed");
+          localStorage.removeItem("token");
+          window.location = "/";
+        }
+      })
+      .catch((error) => {
+        console.error("ERROR", error);
+      });
+  }, []);
+
+
+  return (
+    <>
+    <Nav/>
+    <div className="welcome">
+      <div className="welcomebox">
+        <h1>Welcome</h1>
+        <h1>{data.fname+' '+data.surname} </h1>
+      </div>
+    </div>
+    <div className="cont">
+      <div className="conin">
+            <div className="btd"><button type="button" className="btn btn-danger bt">เช็คประวัติการใช้บริการ</button></div>
+            <Link to={"/Status/" +id}>  <div className="btd"><button type="button" className="btn btn-danger bt">Status Car</button></div></Link>
+            <Link to={"/Reservetionc/" +id}> <div className="btd"><button type="button" className="btn btn-danger bt">จองคิว</button></div></Link>
+           
+            <Link to={"/ProfileC/" +id}><div className="btd"><button type="button" class="btn btn-danger bt">โปรไฟล์</button></div></Link>
+            <div className="btd"><button type="button" className="btn btn-danger bt">นัดครั้งถัดไป</button></div>
+      </div>
+    </div>
+   
+    </>
+  );
+}
+
+export default Homeemployee;

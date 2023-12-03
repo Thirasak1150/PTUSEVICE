@@ -1,0 +1,14 @@
+
+.md{
+   border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(169, 78, 78);
+    
+    
+}
+
+.lidetail{
+    margin-top: 10px;
+   
+}

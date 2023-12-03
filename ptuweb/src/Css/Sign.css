@@ -1,0 +1,41 @@
+
+
+.ct{
+    justify-content: center;
+    align-items: center;
+  
+    display: flex;
+    
+   
+}
+.ct2{
+    margin-top: 100px;
+
+    width: 400px;
+   
+    
+}
+.submib{
+    text-align: center;
+}
+.bt{
+    background-color: brown;
+    width: 100px;
+    height: 35px;
+    color: #fff;
+}
+.si {
+    margin-right: 15px;
+    text-align: center;
+    
+
+    
+}
+.si a{
+    text-decoration: none;
+    
+}
+.er{
+    text-decoration: none;
+    color: red;
+}

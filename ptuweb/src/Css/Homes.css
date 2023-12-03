@@ -1,0 +1,45 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    
+}
+.welcome{
+  
+
+    text-align: center;
+    align-items: center;
+    height: 200px;
+    
+    
+}
+.welcomebox{
+    padding-top: 50px;
+    height: 150px;
+   
+}
+.welcomebox h1{
+   font-weight: 900;
+   font-size: 50px;
+   
+}
+/* .bt {
+    
+} */
+.btd {
+    margin-top: 20px;
+}
+.btd button{
+    width: 500px;
+    height: 69px;
+}
+.conin{
+   
+    
+    text-align: center;
+    clear: both;
+    display: table;
+}
+.cont{
+    display: flex;
+    justify-content: center;
+}

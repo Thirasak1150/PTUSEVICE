@@ -1,0 +1,30 @@
+.bt{
+    background-color: brown;
+    width: 150px;
+    height: 50px;
+    color: #fff;
+    border: 1px solid blue;
+}
+.dis {
+  
+    height: 100px
+    ;
+}
+.dis1 {
+    margin-left: 150px;
+    margin-top: 30px;
+    
+}
+.dis2 {
+    margin-top: 30px;
+    margin-left: 90px;
+}
+.err a {
+    color: red;
+    text-decoration: none;
+}
+.dis2 a {
+   
+    text-decoration: none;
+}
+

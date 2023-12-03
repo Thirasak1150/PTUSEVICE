@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "msnodesqlv8": "^4.1.1",
+    "mssql": "^10.0.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.4",
+    "nodemon": "^3.0.1"
+  }
+}
