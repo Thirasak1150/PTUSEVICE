@@ -45,6 +45,28 @@ exports.readcar = async (req, res) => {
     }
 };
 
+exports.readcarusername = async (req, res) => {
+    try {
+        const username = req.params.username;
+        await db.query(
+            `
+        SELECT *
+        FROM car
+        WHERE customerid = ?`,
+            username,
+            (err, result) => {
+                try {
+                    res.send(result);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error <read>");
+    }
+};
 exports.updatecar = async (req, res) => {
     try {
         const carid = req.params.id;

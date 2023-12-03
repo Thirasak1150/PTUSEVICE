@@ -3,7 +3,7 @@ const db = require("../config/connect");
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var secret = 'Ptulogin'
-const saltRounds = 10;
+
 exports.login = async (req, res, next) => {
 
     db.query(

@@ -8,9 +8,14 @@ import Homeemployee from "./component/Homeemployee.jsx";
 import Sign from "./Sign.jsx";
 import Homeadmin from "./component/Homeadmin.jsx";
 import ProfileC from "./component/ProfileC.jsx";
-import 'bootstrap/dist/css/bootstrap.css'
+import "bootstrap/dist/css/bootstrap.css";
 import Status from "./component/Status.jsx";
+import SeviceE from "./component/Employee/SeviceE.jsx";
 import Reservetionc from "./component/reserC/Reservetionc.jsx";
+// import SeviceE from "./component/Employee/SeviceE.jsx";
+// import Updatestatus from "./component/Employee/Updatestatus.jsx";
+// import ReservetionE from "./component/Employee/ReservetionE.jsx";
+// import ReservetionShow from "./component/Employee/ReservetionShow.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,9 +63,37 @@ const router = createBrowserRouter([
     element: <Status />,
   },
   {
+    path: "/SeviceE",
+    element: <SeviceE />,
+  },
+  {
     path: "/Reservetionc/:id",
     element: <Reservetionc />,
   }
+  // {
+  //   path: "/SeviceE/:id",
+  //   element: <SeviceE />,
+  // },
+  // {
+  //   path: "/Updatestatus",
+  //   element: <Updatestatus />,
+  // },
+  // {
+  //   path: "/ReservetionE",
+  //   element: <ReservetionE />,
+  // },
+  // {
+  //   path: "/ProfileE/:id",
+  //   element: <ProfileE />,
+  // },
+  // {
+  //   path: "/ReservetionShow",
+  //   element: <ReservetionShow />,
+  // },
+  // {
+  //   path: "/Editsevice",
+  //   element: <Editsevice />,
+  // }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

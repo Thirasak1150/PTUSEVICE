@@ -27,17 +27,7 @@ function Status() {
       .then((res) => {
         setDatacar(res.data);
         console.log(res.data);
-        {datacar.map((item,index)=>{
-          if(item.status == 'NOTCARSERVICE'){
-              setColor[i]("red")
-          }
-         else if(item.status == 'wait Service'){
-            setColor[i]("yellow")
-        }
-        else if(item.status == 'wait Service'){
-          setColor[i]("yellow")
-      }
-        })}
+       
       })
       .catch((err) => {
         console.log(err);

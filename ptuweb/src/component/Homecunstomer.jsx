@@ -72,7 +72,7 @@ function Homeemployee() {
     <div className="cont">
       <div className="conin">
             <div className="btd"><button type="button" className="btn btn-danger bt">เช็คประวัติการใช้บริการ</button></div>
-            <Link to={"/Status/" +id}>  <div className="btd"><button type="button" className="btn btn-danger bt">Status Car</button></div></Link>
+            <Link to={"/Status/" +id}>  <div className="btd"><button type="button" className="btn btn-danger bt">Status</button></div></Link>
             <Link to={"/Reservetionc/" +id}> <div className="btd"><button type="button" className="btn btn-danger bt">จองคิว</button></div></Link>
            
             <Link to={"/ProfileC/" +id}><div className="btd"><button type="button" class="btn btn-danger bt">โปรไฟล์</button></div></Link>

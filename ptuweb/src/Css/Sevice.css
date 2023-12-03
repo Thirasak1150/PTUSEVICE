@@ -1,0 +1,21 @@
+/* *{
+    background-color: brown;
+    color: aliceblue;
+} */
+.btservice{
+    background-color: gray  ;
+    padding: 15px 40px;
+}
+.btservice:hover {
+    background-color: brown;
+  }
+  .submibb{
+  
+   text-align: center;
+  }
+  .a button{
+    color: rgb(255, 131, 131);
+  }
+  .a button:hover{
+    color: rgb(255, 255, 255);
+  }
