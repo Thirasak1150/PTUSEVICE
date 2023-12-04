@@ -30,6 +30,7 @@ exports.login = async (req, res, next) => {
                 expiresIn: '1h'
             });
             const posision = username[0].assess_right
+          
             const id = username[0].id_member
             res.json({
                 status: 'ok',

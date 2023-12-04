@@ -70,7 +70,7 @@ function Homeemployee() {
     </div>
     <div className="cont">
       <div className="conin">
-           <Link to="/SeviceE">  <div className="btd"><button type="button" className="btn btn-danger bt">Service</button></div></Link>
+           <Link to={"/SeviceE/"+id}>  <div className="btd"><button type="button" className="btn btn-danger bt">Service</button></div></Link>
             <Link to={"/Status/" +id}>  <div className="btd"><button type="button" className="btn btn-danger bt">Status Car</button></div></Link>
            
            

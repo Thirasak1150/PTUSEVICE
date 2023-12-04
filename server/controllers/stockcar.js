@@ -45,6 +45,38 @@ exports.readstockcar = async (req, res) => {
     }
 };
 
+exports.DeleteStock = async (req, res) => {
+    try {
+        const deletequantity = req.body.deletequantity
+        const Carpartid = req.body.carpartid
+
+
+        const updateData = `
+        UPDATE stok_carparts
+        SET quantity = quantity - ?
+        WHERE carpartid = ? `;
+        await db.query(
+            updateData,
+            [deletequantity, Carpartid],
+            function (err, result) {
+                if (err) {
+                    res.json({
+                        status: 'error',
+                        message: err
+                    })
+                }
+                res.json({
+                    status: 'update okk'
+                })
+
+            }
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error <update>");
+    }
+};
+
 exports.updatstockcar= async (req, res) => {
     try {
         const namecarpart = req.body.namecarpart

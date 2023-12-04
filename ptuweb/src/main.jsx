@@ -67,6 +67,10 @@ const router = createBrowserRouter([
     element: <SeviceE />,
   },
   {
+    path: "/SeviceE/:id",
+    element: <SeviceE />,
+  },
+  {
     path: "/Reservetionc/:id",
     element: <Reservetionc />,
   }

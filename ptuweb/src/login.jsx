@@ -60,6 +60,7 @@ export default function SignInSide() {
     })
       .then((Response) => Response.json())
       .then((data) => {
+       
         if (data.status == "ok") {
           if (data.posision == "customer") {
             localStorage.setItem("token", data.token);

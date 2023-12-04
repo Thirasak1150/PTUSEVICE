@@ -3,7 +3,8 @@ const router = express.Router();
 const { read, list, create, update, remove, login, authen } = require('../controllers/contrller');
 const { listcar, readcar, updatecar, createcar, removecar, readcarusername } = require('../controllers/car');
 const { createreservetion, readreservetion, listreservetion, updatereservetion, removereservetion } = require('../controllers/resevertion');
-const { readstockcar, liststockcar, createstockcarpart, updatstockcar, removestockcarpart } = require('../controllers/stockcar');
+const { readstockcar, liststockcar, createstockcarpart, updatstockcar, removestockcarpart, DeleteStock } = require('../controllers/stockcar');
+const { createservice, readservice, listservice, updatesevice, removeservice, readidservice } = require('../controllers/service');
 
 router.get('/member', list);
 router.get('/member/:id', read);
@@ -31,5 +32,14 @@ router.post('/createstock', createstockcarpart);
 router.get('/stock/:id', readstockcar);
 router.get('/stock', liststockcar);
 router.put('/updatestock', updatstockcar);
+router.put('/Deletestock', DeleteStock);
 router.delete('/removestock/:id', removestockcarpart);
+
+//service
+router.post('/createservice', createservice);
+router.get('/service/:id', readservice);
+router.get('/readidervice', readidservice);
+router.get('/service', listservice);
+router.put('/updateservice', updatesevice);
+router.delete('/removeservice/:id', removeservice);
 module.exports = router;
