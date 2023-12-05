@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Status from "./component/Status.jsx";
 import SeviceE from "./component/Employee/SeviceE.jsx";
 import Reservetionc from "./component/reserC/Reservetionc.jsx";
+import Serviceall from "./component/Employee/Serviceall.jsx";
 // import SeviceE from "./component/Employee/SeviceE.jsx";
 // import Updatestatus from "./component/Employee/Updatestatus.jsx";
 // import ReservetionE from "./component/Employee/ReservetionE.jsx";
@@ -73,6 +74,15 @@ const router = createBrowserRouter([
   {
     path: "/Reservetionc/:id",
     element: <Reservetionc />,
+  }
+  ,
+  {
+    path: "/Serviceall/:id",
+    element: <Serviceall />,
+  },
+  {
+    path: "/Serviceall",
+    element: <Serviceall />,
   }
   // {
   //   path: "/SeviceE/:id",

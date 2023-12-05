@@ -38,7 +38,7 @@ router.delete('/removestock/:id', removestockcarpart);
 //service
 router.post('/createservice', createservice);
 router.get('/service/:id', readservice);
-router.get('/readidervice', readidservice);
+router.get('/readidervice/:id', readidservice);
 router.get('/service', listservice);
 router.put('/updateservice', updatesevice);
 router.delete('/removeservice/:id', removeservice);

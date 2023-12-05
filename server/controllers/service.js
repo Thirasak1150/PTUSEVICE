@@ -25,32 +25,18 @@ exports.listservice = async (req, res) => {
 
 exports.readidservice = async (req, res) => {
     try {
-        const usernamecustomer = req.body.usernamecustomer
-        const employeeid = req.body.employeeid
-        const date = req.body.date
-        const distance = req.body.distance
-       
-        const carid = req.body.carid
-        const carpartid = req.body.carpartid
+        const usernamecustomer = req.params.id
         await db.query(
             `
-        SELECT *
+        SELECT  * 
         FROM sevice
-        WHERE usernamecustomer = ? AND employeeid = ? AND 
-        date = ? AND
-        distance = ? AND carid = ? AND
-        carpartid = ? `,
-            [usernamecustomer, employeeid, date,
-                distance,  carid,
-                carpartid
-            ],
-            (err, result,field) => {
+        WHERE usernamecustomer = ?
+        ORDER BY serviceid DESC
+        LIMIT 0,1`,
+        usernamecustomer,
+            (err, result) => {
                 try {
-                    const serviceid = result[0].serviceid
-                    res.json({
-                        status: 'ok',
-                        serviceid
-                    })
+                    res.send(result);
                 } catch (err) {
                     console.log(err);
                 }
@@ -148,6 +134,7 @@ exports.createservice = (req, res) => {
         [usernamecustomer, employeeid, date, servicename, carpartid, quantity, detail, distance, time, carid],
         function (err, result) {
             if (err) {
+               
                 res.json({
                     status: 'error',
                     message: err
