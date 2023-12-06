@@ -82,6 +82,10 @@ const router = createBrowserRouter([
     element: <Serviceall />,
   },
   {
+    path: "/Serviceall/:id/:Em",
+    element: <Serviceall />,
+  },
+  {
     path: "/Serviceall",
     element: <Serviceall />,
   }

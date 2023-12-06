@@ -9,6 +9,74 @@ function Checkservice() {
   const [dateservice, Setdateservice] = useState([]);
   const [username, setUsername] = useState("");
   const [isTog, setIsTog] = useState(false);
+
+  const Updatestatus = (id) => {
+    console.log("id " + id);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success btdd",
+        cancelButton: "btn btn-danger btdd",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes Success ",
+        cancelButtonText: "No Success",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire({
+            title: "Update  completed",
+            text: "Your Update Status completed",
+            icon: "success",
+          });
+          axios
+            .put("http://localhost:3001/updatestatusservice", {
+              serviceid: id,
+              status: "เสร็จเเล้ว",
+            })
+            .then((res) => {
+              console.log(res);
+              Loaddataservice();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your Cancelled Update Status",
+            icon: "error",
+          });
+        }
+      });
+  };
+  
+  const Editservice = (id) => {
+    console.log("id " + id);
+ 
+      axios
+      .put("http://localhost:3001/updatestatusservice", {
+        serviceid: id,
+        status: "เสร็จเเล้ว",
+      })
+      .then((res) => {
+        console.log(res);
+        Loaddataservice();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const Deleteservice = (id) => {
     console.log("id " + id);
     const swalWithBootstrapButtons = Swal.mixin({
@@ -39,7 +107,7 @@ function Checkservice() {
             .delete("http://localhost:3001/removeservice/" + id)
             .then((res) => {
               console.log(res);
-              Loadservice();
+              Loaddataservice();
             })
             .catch((err) => {
               console.log(err);
@@ -56,24 +124,21 @@ function Checkservice() {
         }
       });
   };
-  const  Loaddataservice = () =>{
+  const Loaddataservice = () => {
     axios
-    .get("http://localhost:3001/readusernameservice/" + username)
-    .then((res) => {
-        Setdateservice(res.data)
-      console.log(res);
-      setIsTog(true)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+      .get("http://localhost:3001/readusernameservice/" + username)
+      .then((res) => {
+        Setdateservice(res.data);
+        console.log(res);
+        setIsTog(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const Check = () => {
-   
-
     return (
       <>
-     
         <div className="boxzero">
           <div className="boxone">
             <table className="table ">
@@ -117,6 +182,12 @@ function Checkservice() {
                         >
                           Delete
                         </button>
+
+                        <button type="button" class="btn btn-warning btdd" 
+                        onClick={() => Editservice(item.serviceid)}
+                        >
+                          Edit
+                        </button>
                       </th>
                     </tr>
                   );
@@ -125,7 +196,6 @@ function Checkservice() {
             </table>
           </div>
         </div>
-     
       </>
     );
   };
@@ -137,11 +207,10 @@ function Checkservice() {
       <div className="ct">
         <div className="ct2">
           <form>
-            <div className="mb-3" >
+            <div className="mb-3">
               <input
                 type="tel"
                 name="password"
-                
                 placeholder="                            usernamecustomer"
                 style={{ backgroundColor: "brown", color: "white" }}
                 className="form-control"
@@ -151,9 +220,13 @@ function Checkservice() {
               />
             </div>
             <div className="mb-3 Serviceallbt">
-            <button type="button" class="btn btn-outline-danger"
-             onClick={() => Loaddataservice()}
-            >Danger</button>
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                onClick={() => Loaddataservice()}
+              >
+                Danger
+              </button>
             </div>
           </form>
         </div>

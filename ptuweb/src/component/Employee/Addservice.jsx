@@ -4,12 +4,13 @@ import "../../Css/Sevice.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function SeviceE() {
+function Addservice(props) {
   const wt = new Date();
-
-  const params = useParams();
-  const Employeeid = params.id;
-  console.log(Employeeid)
+ 
+ const Employeeid = props.employeeid
+ const CustomerId = props.customerId
+ console.log("Employeeid"+Employeeid)
+ console.log("CustomerId"+CustomerId)
   const  [s1,sets1]= useState('')
   const [s2,sets2]= useState('')
   const [s3,sets3]= useState('')
@@ -48,7 +49,7 @@ function SeviceE() {
     const checkdate = displaydate;
     const checkTime = displayTime
     console.log("check nameservice: "+nameservice)
-    console.log("check username: "+username)
+    console.log("check username: "+CustomerId)
     console.log("check Employeeid: "+Employeeid)
     console.log("check checkdate: "+checkdate)
     console.log("check checkTime: "+checkTime)
@@ -59,7 +60,7 @@ function SeviceE() {
     console.log(" ")
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(username == ''){
+    if(CustomerId == ''){
       sets1(' กรุณากรอก username')
     }
     else if(carid == ''){
@@ -79,7 +80,7 @@ else if(countcarpart == ''){
   else{
     axios
     .post("http://localhost:3001/createservice", {
-      usernamecustomer: username,
+      usernamecustomer: CustomerId,
       employeeid: Employeeid,
       date: displaydate,
       servicename: nameservice,
@@ -111,7 +112,7 @@ else if(countcarpart == ''){
       console.log(err);
     });
  
-    window.location =("/Serviceall/"+username+"/"+Employeeid);
+    window.location =("/Serviceall/"+CustomerId+"/"+Employeeid);
   }
    
     
@@ -123,7 +124,7 @@ else if(countcarpart == ''){
 
   const Loadid = () => {
     axios
-      .get("http://localhost:3001/carusername/" + username)
+      .get("http://localhost:3001/carusername/" + CustomerId)
       .then((res) => {
         setDatae(res.data);
         console.log(res.data);
@@ -147,23 +148,11 @@ else if(countcarpart == ''){
 
   return (
     <div>
-      <div className="header">
-        <h1 className="profile">Service</h1>
-      </div>
+     
       <div className="ct">
         <div className="ct2">
           <form>
-            <div className="mb-3">
-              <label className="form-label">username </label> <label className="form-label">{s1} </label>
-              <input
-                type="tel"
-                name="password"
-                className="form-control"
-                onChange={(event) => {
-                  setUsername(event.target.value);
-                }}
-              />
-            </div>
+        
             <div className="mb-3">
               <label className="form-label">Select Car </label> <label className="form-label">{s2} </label>
 
@@ -262,4 +251,4 @@ else if(countcarpart == ''){
   );
 }
 
-export default SeviceE;
+export default Addservice;

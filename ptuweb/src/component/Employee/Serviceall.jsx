@@ -4,23 +4,29 @@ import "../../Css/Sevice.css";
 import { useParams } from "react-router-dom";
 import "../../Css/Serviceall.css"
 import Swal from 'sweetalert2'
-
+import { Link } from "react-router-dom";
+import Addservice from "./Addservice";
 
 function Serviceall() {
   const params = useParams();
-  const customerid = params.id;
+  const Customerid = params.id;
+  const Employeeid = params.Em;
   const [dateservice, Setdateservice] = useState([]);
+  const [istig,SetIsTing] = useState(false)
 
+  console.log("customerid"+Customerid)
+  console.log("Employeeid"+Employeeid)
   useEffect(() => {
     Loadservice();
-  }, [customerid]);
+  }, [Customerid]);
 
   const Loadservice = () => {
     axios
-      .get("http://localhost:3001/readidervice/" + customerid)
+      .get("http://localhost:3001/readidervice/" + Customerid)
       .then((res) => {
         Setdateservice(res.data);
         console.log(res.data);
+      
       })
       .catch((err) => {
         console.log(err);
@@ -102,7 +108,7 @@ function Serviceall() {
         .then((res) => {
           console.log(res);
           Loadservice()
-          
+        
         })
         .catch((err) => {
           console.log(err);
@@ -118,13 +124,13 @@ function Serviceall() {
         });
       }
     });
-
+    
   
   };
   return (
     <>
       <div className="header">
-            <h1 className="profile">Service</h1>
+            <h1 className="profile">Service </h1>
           </div>
       <div className="boxzero">
         <div className="boxone">
@@ -178,8 +184,9 @@ function Serviceall() {
         </div>
       </div>
       <div className="Serviceallbt"> 
-      <button type="button" className="btn btn-info">Add Service</button>  
+      <button type="button" className="btn btn-info" onClick={()=>SetIsTing(!istig)}>Add Service</button> 
       </div>
+      {istig && <Addservice employeeid={Employeeid} customerId={Customerid}/> }
     </>
   );
 }
