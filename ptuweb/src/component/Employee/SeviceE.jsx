@@ -213,6 +213,7 @@ else if(countcarpart == ''){
 
               <select
                 className="form-control"
+                value={Carpartidset}
                 onChange={(e) => setCarpartid(e.target.value)}
               >
                 {datacarpart.map((item, index) => {

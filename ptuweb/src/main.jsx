@@ -13,6 +13,7 @@ import Status from "./component/Status.jsx";
 import SeviceE from "./component/Employee/SeviceE.jsx";
 import Reservetionc from "./component/reserC/Reservetionc.jsx";
 import Serviceall from "./component/Employee/Serviceall.jsx";
+import Checkservice from "./component/Employee/Checkservice.jsx";
 // import SeviceE from "./component/Employee/SeviceE.jsx";
 // import Updatestatus from "./component/Employee/Updatestatus.jsx";
 // import ReservetionE from "./component/Employee/ReservetionE.jsx";
@@ -83,6 +84,11 @@ const router = createBrowserRouter([
   {
     path: "/Serviceall",
     element: <Serviceall />,
+  }
+  ,
+  {
+    path: "/Checkservice",
+    element: <Checkservice />,
   }
   // {
   //   path: "/SeviceE/:id",
