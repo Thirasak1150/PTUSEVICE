@@ -37,7 +37,7 @@ function SeviceE() {
       bandcar: "",
       surname: "",
       status: "",
-      customerid: "",
+      username: "",
       details: "",
     },
   ]);
@@ -170,7 +170,9 @@ else if(countcarpart == ''){
               <select
                 className="form-control"
                 onChange={(e) => setCarid(e.target.value)}
-              >
+              >  <option >
+             กรุณาเลือกรถยนต์
+            </option>
                 {datae.map((item, index) => {
                   return (
                     <>

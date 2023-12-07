@@ -14,7 +14,7 @@ function Status() {
     bandcar: "",
     surname: "",
     status: "",
-    customerid: "",
+    username: "",
     details: "",
   },])
   useEffect(() => {

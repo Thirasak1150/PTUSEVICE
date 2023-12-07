@@ -75,7 +75,7 @@ export default function SignInSide() {
           else if (data.posision == "admin") {
             localStorage.setItem("token", data.token);
             // alert("login  admin sucess ");
-            window.location = "/Home/";
+            window.location = ("/Homeadmin/"+data.id);
           }
         } else {
           setE("usernam or password  wrong!! ")

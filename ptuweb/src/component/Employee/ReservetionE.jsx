@@ -8,7 +8,7 @@ function ReservetionE(props) {
         carid: "",
         bandcar: "",
         status: "",
-        customerid: "",
+        username: "",
         details: "",
      }])
      const [name,setName] = useState('')
@@ -31,7 +31,7 @@ const [carid,setCarid] = useState('')
         date: date,
         time: time, 
         detail:detail,
-        customerid:props.customerId,
+        username:props.username,
         carid:carid
       })
       .then((res) => {
@@ -50,7 +50,7 @@ const [carid,setCarid] = useState('')
   };
     const LoadData2 = async () => {
         axios
-          .get("http://localhost:3001/car/" + props.customerId)
+          .get("http://localhost:3001/car/" + props.username)
           .then((res) => {
           
             setOptions(res.data);

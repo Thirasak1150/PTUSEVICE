@@ -142,7 +142,7 @@ function Readresevesion() {
          
              
             </div>
-            {isTog3 && <ReservetionE  customerId={username}/> }
+            {isTog3 && <ReservetionE  username={username}/> }
         <div className="boxzero">
           <div className="boxone">
             <table className="table ">

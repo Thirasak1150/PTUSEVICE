@@ -12,7 +12,7 @@ function Reservetionc() {
     details: "",
  }])
   const params = useParams();
-  const id = params.id;
+  const username = params.id;
   const [isTog, setIsTog] = useState(false);
   const [isTog2, setIsTog2] = useState(false);
   const [datareservetion, setReservetion] = useState([]);
@@ -34,7 +34,7 @@ console.log("carid s"+carid)
 
   const LoadData = async () => {
     axios
-      .get("http://localhost:3001/readreservetion/" + id)
+      .get("http://localhost:3001/readreservetion/" + username)
       .then((res) => {
         setReservetion(res.data);
         console.log(res.data);
@@ -45,7 +45,7 @@ console.log("carid s"+carid)
   };
   const LoadData2 = async () => {
     axios
-      .get("http://localhost:3001/car/" + id)
+      .get("http://localhost:3001/car/" + username)
       .then((res) => {
       
         setOptions(res.data);
@@ -66,7 +66,7 @@ console.log("carid s"+carid)
         date: date,
         time: time, 
         detail:detail,
-        customerid:id,
+        username:username,
         carid:carid
       })
       .then((res) => {

@@ -14,7 +14,7 @@ function Editp(data) {
       bandcar: "",
       surname: "",
       status: "",
-      customerid: "",
+      username: "",
       details: "",
     },
   ]);
@@ -23,7 +23,7 @@ function Editp(data) {
     bandcar: "",
     surname: "",
     status: "",
-    customerid: "",
+    username: "",
     details: "",
   });
 
@@ -33,7 +33,7 @@ function Editp(data) {
 
   const LoadData = async () => {
     axios
-      .get("http://localhost:3001/car/" + data.data.id_member)
+      .get("http://localhost:3001/car/" + data.data.username)
       .then((res) => {
         if (res.data.length == 0) {
           setScheck(true);
@@ -205,7 +205,6 @@ function Editp(data) {
           );
         })}
       </div>
-
       <div>{isTog3 && t()}</div>
     </>
   );

@@ -24,13 +24,13 @@ exports.listcar = async (req, res) => {
 };
 exports.readcar = async (req, res) => {
     try {
-        const id_member = req.params.id;
+        const username = req.params.id;
         await db.query(
             `
         SELECT *
         FROM car
-        WHERE customerid = ?`,
-            id_member,
+        WHERE username = ?`,
+        username,
             (err, result) => {
                 try {
                     res.send(result);
@@ -52,7 +52,7 @@ exports.readcarusername = async (req, res) => {
             `
         SELECT *
         FROM car
-        WHERE customerid = ?`,
+        WHERE username = ?`,
             username,
             (err, result) => {
                 try {
@@ -106,14 +106,14 @@ exports.createcar = (req, res) => {
 
     const bandcar = req.body.bandcar
     const details = req.body.details
-    const customerid = req.body.customerid
+    const username = req.body.username
     const add_data = `
             INSERT INTO 
-            car (bandcar, details, status,customerid)
+            car (bandcar, details, status,username)
             VALUES (?, ?, ?,?)`;
     db.query(
         add_data,
-        [bandcar, details, 'NOCARSERVICE', customerid],
+        [bandcar, details, 'NOCARSERVICE', username],
         function (err, result) {
             if (err) {
                 res.json({

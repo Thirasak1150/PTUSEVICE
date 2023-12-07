@@ -38,7 +38,7 @@ function Addservice(props) {
       bandcar: "",
       surname: "",
       status: "",
-      customerid: "",
+      username: "",
       details: "",
     },
   ]);
@@ -60,10 +60,8 @@ function Addservice(props) {
     console.log(" ")
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(CustomerId == ''){
-      sets1(' กรุณากรอก username')
-    }
-    else if(carid == ''){
+
+     if(carid == ''){
       sets2(' กรุณาเลือกรถยนต์ที่ต้องการใช้บริการ')
   }
   else if(distance == ''){
@@ -162,7 +160,10 @@ else if(countcarpart == ''){
               >
                 {datae.map((item, index) => {
                   return (
-                    <>
+                    <>     
+                    <option key={index} value={''}>
+                   เลือกรถยนต์
+                  </option>
                       <option key={index} value={item.carid}>
                         {item.carid} {item.bandcar} {item.details}
                       </option>

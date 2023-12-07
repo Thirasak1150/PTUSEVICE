@@ -12,7 +12,20 @@ function Servicereservetion(Send) {
   const params = useParams();
   const reservetionid = params.id;
   const Employeeid = params.Em;
-  const [dateservice, Setdateservice] = useState([]);
+  const [dateservice, Setdateservice] = useState([{
+    serviceid:"",	
+    usernamecustomer:	"",
+    employeeid:	"",
+    date:	"",
+    servicename: "",
+    carpartid:	"",
+    quantity:	"",
+    detail:	"",
+    distance:	"",
+    time:"",
+    carid:	"",
+    statusservice:"",
+  }]);
   const [reservetion, Setreservetion] = useState([]);
   const [istig,SetIsTing] = useState(false)
   const [istig3,SetIsTing3] = useState(false)
@@ -28,7 +41,7 @@ function Servicereservetion(Send) {
   }, [reservetion]);
   const Loadservice = () => {
     axios
-      .get("http://localhost:3001/readidervice/" + reservetion.customerid)
+      .get("http://localhost:3001/readidervice/" + reservetion.username)
       .then((res) => {
         Setdateservice(res.data);
         console.log(res.data);
@@ -222,7 +235,7 @@ function Servicereservetion(Send) {
       <button type="button" className="btn btn-info" onClick={()=>SetIsTing3(!istig)}>Add Reseritin</button> 
       </div>
       {istig3 && <ReservetionE  customerId={reservetion.customerid}/> }
-      {istig && <Addservice employeeid={Employeeid} customerId={reservetion.usernamecustomer}/> }
+      {istig && <Addservice employeeid={Employeeid} customerId={reservetion.username}/> }
     </>
   );
 }

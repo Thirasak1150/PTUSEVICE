@@ -19,13 +19,13 @@ exports.listreservetion = async (req, res) => {
 };
 exports.readreservetion = async (req, res) => {
   try {
-    const customerid = req.params.id;
+    const username = req.params.id;
     await db.query(
       `
         SELECT *
         FROM reservetion
-        WHERE customerid = ?`,
-      customerid,
+        WHERE username = ?`,
+        username,
       (err, result) => {
         try {
           res.send(result);
@@ -69,15 +69,15 @@ exports.updatereservetion = async (req, res) => {
     const name = req.body.name;
     const date = req.body.date;
     const time = req.body.time;
-    const customerid = req.body.customerid;
+    const username = req.body.username;
 
     const updateData = `
         UPDATE reservetion
         SET name = ?, date = ?,time = ?
-        WHERE reservetionid = ? AND customerid = ?`;
+        WHERE reservetionid = ? AND username = ?`;
     await db.query(
       updateData,
-      [name, date, time, reservertionid, customerid],
+      [name, date, time, reservertionid, username],
       function (err, result) {
         if (err) {
           res.json({
@@ -100,7 +100,7 @@ exports.createreservetion = (req, res) => {
   const name = req.body.name;
   const date = req.body.date;
   const time = req.body.time;
-  const customerid = req.body.customerid;
+  const username = req.body.username;
   const detail = req.body.detail;
   const carid = req.body.carid;
 
@@ -108,15 +108,15 @@ exports.createreservetion = (req, res) => {
             SELECT tel_member
             FROM members
             WHERE username = ? `;
-  db.query(add, customerid, (err, result) => {
+  db.query(add, username, (err, result) => {
     try {
       const add_data = `
     INSERT INTO 
-    reservetion (name, date, time,customerid,detail,carid,tel)
+    reservetion (name, date, time,username,detail,carid,tel)
     VALUES (?, ?, ?,?,?,?,?)`;
       db.query(
         add_data,
-        [name, date, time, customerid, detail, carid, result[0].tel_member],
+        [name, date, time, username, detail, carid, result[0].tel_member],
         function (err, re) {
           if (err) {
             res.json({

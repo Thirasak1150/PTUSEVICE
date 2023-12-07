@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function Addcar(data) {
+   
   const [datae, setDatae] = useState({
     bandcar: "",
     details: "",
-    customerid:data.data.id_member,
+    username:data.data.username,
   });
   const handleChange = (e) => {
     setDatae({
@@ -16,11 +17,12 @@ function Addcar(data) {
   const handleSubmit = async (e) => {
     console.log("datainput "+datae)
     e.preventDefault();
+
+    
     axios
       .post("http://localhost:3001/carcreate", datae)
       .then((res) => {
         console.log(res.data);
-        window.location = "/ProfileC/"+data.data.id_member;
       })
       .catch((err) => {
         console.log(err);
