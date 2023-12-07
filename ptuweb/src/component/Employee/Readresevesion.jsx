@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import "../../Css/Serviceall.css";
 import Swal from "sweetalert2";
 
-function Checkservice() {
+function Readresevesion() {
   const [dateservice, Setdateservice] = useState([]);
   const [username, setUsername] = useState("");
   const [isTog, setIsTog] = useState(false);
@@ -221,4 +221,4 @@ function Checkservice() {
   );
 }
 
-export default Checkservice;
+export default Readresevesion;

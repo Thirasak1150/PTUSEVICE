@@ -14,6 +14,7 @@ import SeviceE from "./component/Employee/SeviceE.jsx";
 import Reservetionc from "./component/reserC/Reservetionc.jsx";
 import Serviceall from "./component/Employee/Serviceall.jsx";
 import Checkservice from "./component/Employee/Checkservice.jsx";
+import Readresevesion from "./component/Employee/Readresevesion.jsx";
 // import SeviceE from "./component/Employee/SeviceE.jsx";
 // import Updatestatus from "./component/Employee/Updatestatus.jsx";
 // import ReservetionE from "./component/Employee/ReservetionE.jsx";
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
   {
     path: "/Checkservice",
     element: <Checkservice />,
+  } ,
+  {
+    path: "/Readresevesion",
+    element: <Readresevesion />,
   }
   // {
   //   path: "/SeviceE/:id",
