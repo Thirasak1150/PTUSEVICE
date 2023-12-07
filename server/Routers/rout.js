@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { read, list, create, update, remove, login, authen } = require('../controllers/contrller');
+const { read, list, create, update, remove, login, authen, updatepositionCustomer, updatepositionEmployee, readusername } = require('../controllers/contrller');
 const { listcar, readcar, updatecar, createcar, removecar, readcarusername } = require('../controllers/car');
 const { createreservetion, readreservetion, listreservetion, updatereservetion, removereservetion, readreservetionId } = require('../controllers/resevertion');
 const { readstockcar, liststockcar, createstockcarpart, updatstockcar, removestockcarpart, DeleteStock } = require('../controllers/stockcar');
@@ -8,11 +8,14 @@ const { createservice, readservice, listservice, updatesevice, removeservice, re
 
 router.get('/member', list);
 router.get('/member/:id', read);
+router.get('/readusername/:id', readusername);
 router.get('/Homecustomer/:id', read);
 router.post('/create', create);
 router.post('/login',login)
 router.post('/authen',authen)
 router.put('/Customer/:id', update);
+router.put('/positionCustomer/:id', updatepositionCustomer);
+router.put('/positionEmployee/:id', updatepositionEmployee);
 router.delete('/member/:id', remove);
 //CAR
 router.get('/car', listcar);

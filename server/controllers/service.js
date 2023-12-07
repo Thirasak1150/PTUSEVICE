@@ -33,7 +33,7 @@ exports.readidservice = async (req, res) => {
         FROM sevice
         WHERE usernamecustomer = ? AND statusservice = ?
         `,
-        [usernamecustomer,statusservice],
+            [usernamecustomer, statusservice],
             (err, result) => {
                 try {
                     res.send(result);
@@ -50,7 +50,7 @@ exports.readidservice = async (req, res) => {
 exports.readusernameservice = async (req, res) => {
     try {
         const usernamecustomer = req.params.id
-       
+
         await db.query(
             `
         SELECT  * 
@@ -58,7 +58,7 @@ exports.readusernameservice = async (req, res) => {
         WHERE usernamecustomer = ? 
         ORDER BY serviceid DESC
         `,
-        usernamecustomer,
+            usernamecustomer,
             (err, result) => {
                 try {
                     res.send(result);
@@ -141,26 +141,60 @@ exports.updatestatusservice = async (req, res) => {
     try {
         const serviceid = req.body.serviceid
         const statusservice = req.body.status
-        const updateData = `
-        UPDATE sevice
-        SET statusservice = ?
+
+        const SE = `
+        SELECT carid
+        FROM sevice
         WHERE serviceid = ? `;
-        await db.query(
-            updateData,
-            [statusservice,serviceid],
-            function (err, result) {
+        db.query(
+            SE, serviceid,
+            function (err, resultcar) {
                 if (err) {
                     res.json({
                         status: 'error',
                         message: err
                     })
-                }
-                res.json({
-                    status: 'update okk'
-                })
+                } else {
+                    const updateData = `
+                UPDATE sevice
+               SET statusservice = ?
+                WHERE serviceid = ? `;
+                    db.query(
+                        updateData,
+                        [statusservice, serviceid],
+                        function (err, result) {
+                            if (err) {
+                                res.json({
+                                    status: 'error',
+                                    message: err
+                                })
+                            } else {
 
+                                const upcar = `
+                              UPDATE car
+                               SET status = ?
+                                WHERE carid = ? `;
+                                db.query(upcar,
+                                    ['เสร็จเเล้ว', resultcar[0].carid],
+                                    function (err, resultcar) {
+                                        if (err) {
+                                            res.json({
+                                                status: 'error',
+                                                message: err
+                                            })
+                                        }
+                                    })
+
+                            }
+
+
+                        }
+                    );
+                }
             }
         );
+
+
     } catch (error) {
         console.log(error);
         res.status(500).send("Server Error <update>");
@@ -187,21 +221,39 @@ exports.createservice = (req, res) => {
             VALUES (?, ?,?,?,?,?,?,?,?,?,?)`;
     db.query(
         add_data,
-        [usernamecustomer, employeeid, date, servicename, carpartid, quantity, detail, distance, time, carid,statusservice],
+        [usernamecustomer, employeeid, date, servicename, carpartid, quantity, detail, distance, time, carid, statusservice],
         function (err, result) {
             if (err) {
-               
+
                 res.json({
                     status: 'error',
                     message: err
                 })
+            } else {
+                const updateData = `
+                UPDATE car
+                SET status = ?
+                WHERE carid = ? `;
+                db.query(
+                    updateData,
+                    ['กำลังดำเนินการ', carid],
+                    function (err, result) {
+                        if (err) {
+                            res.json({
+                                status: 'error',
+                                message: err
+                            })
+                        }
+                        res.json({
+                            status: 'update okk'
+                        })
+
+                    }
+
+                )
+
             }
 
-            res.json({
-                status: 'ok',
-                message: 'ok'
-
-            })
         }
     );
 

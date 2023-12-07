@@ -86,10 +86,36 @@ exports.read = async (req, res) => {
     }
 };
 
+
+exports.readusername = async (req, res) => {
+    try {
+        const username = req.params.id;
+        await db.query(
+            `
+        SELECT *
+        FROM members
+        WHERE username = ?`,
+            username,
+            (err, result) => {
+                try {
+                    res.send(result);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error <read>");
+    }
+};
+
 exports.list = async (req, res) => {
     try {
         await db.query(
-            `SELECT * FROM members`,
+            `SELECT * FROM members
+            WHERE assess_right = ? or  assess_right = ? 
+            `,["employee","customer"],
             function (err, result) {
                 if (err) {
                     res.json({
@@ -168,6 +194,66 @@ exports.create = (req, res) => {
 
 
 
+};
+
+exports.updatepositionCustomer = async (req, res) => {
+    try {
+        const username = req.params.id;
+       
+        const updateData = `
+        UPDATE members 
+        SET assess_right = ?
+        WHERE username = ?`;
+        await db.query(updateData,
+            ["customer",username],
+          
+            function (err, result) {
+                if (err) {
+                    res.json({
+                        status: 'error',
+                        message: err
+                    })
+                }
+                res.json({
+                    status: 'update ok'
+                })
+
+            }
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error <update>");
+    }
+};
+
+exports.updatepositionEmployee = async (req, res) => {
+    try {
+        const username = req.params.id;
+       
+        const updateData = `
+        UPDATE members 
+        SET assess_right = ?
+        WHERE username = ?`;
+        await db.query(updateData,
+            ["employee",username],
+          
+            function (err, result) {
+                if (err) {
+                    res.json({
+                        status: 'error',
+                        message: err
+                    })
+                }
+                res.json({
+                    status: 'update ok'
+                })
+
+            }
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error <update>");
+    }
 };
 
 exports.update = async (req, res) => {

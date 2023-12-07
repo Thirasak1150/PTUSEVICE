@@ -46,7 +46,7 @@ function Homeemployee() {
       .then((Response) => Response.json())
       .then((data) => {
         if (data.status == "ok") {
-          console.log("authen sucess");
+          // console.log("authen sucess");
         } else {
           console.log("authen failed");
           localStorage.removeItem("token");

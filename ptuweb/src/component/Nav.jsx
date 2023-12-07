@@ -5,9 +5,7 @@ function Nav() {
   return (
     <>
     <nav>
-        <Link to="/">Home</Link>
-        <Link to="/Contact">Contact</Link>
-        <Link to="/Sevice">Service</Link>
+
         <Link to="/Login">Logout</Link>
     </nav>
     </>

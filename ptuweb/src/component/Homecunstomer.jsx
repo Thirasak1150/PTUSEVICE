@@ -47,7 +47,7 @@ function Homeemployee() {
       .then((Response) => Response.json())
       .then((data) => {
         if (data.status == "ok") {
-          console.log("authen sucess");
+          // console.log("authen sucess");
         } else {
           console.log("authen failed");
           localStorage.removeItem("token");
@@ -71,7 +71,9 @@ function Homeemployee() {
     </div>
     <div className="cont">
       <div className="conin">
-            <div className="btd"><button type="button" className="btn btn-danger bt">เช็คประวัติการใช้บริการ</button></div>
+            <Link to={"/Readse/" +data.username}>  <div className="btd"><button type="button" className="btn btn-danger bt">Status</button></div></Link>
+            <Link ><div className="btd"><button type="button" className="btn btn-danger bt">
+              เช็คประวัติการใช้บริการ</button></div></Link>
             <Link to={"/Status/" +data.username}>  <div className="btd"><button type="button" className="btn btn-danger bt">Status</button></div></Link>
             <Link to={"/Reservetionc/" +data.username}> <div className="btd"><button type="button" className="btn btn-danger bt">จองคิว</button></div></Link>
            

@@ -16,6 +16,7 @@ function Readresevesion() {
   const [isTog, setIsTog] = useState(false);
   const [isTog2, setIsTog2] = useState(false);
   const [isTog3, setIsTog3] = useState(false);
+  const [isTog4, setIsTog4] = useState(true);
 
   const Updatestatus = (id) => {
     console.log("id " + id);
