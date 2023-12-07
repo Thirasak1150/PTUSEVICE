@@ -74,7 +74,7 @@ function Homeemployee() {
             <Link to="/Checkservice">  <div className="btd"><button type="button" className="btn btn-danger bt">Check Service</button></div></Link>
            
            
-            <Link to="/Readresevesion"><div className="btd"><button type="button" class="btn btn-danger bt">เช็คนัดลูกค้า</button></div></Link>
+            <Link to={"/Readresevesion/"+id}><div className="btd"><button type="button" class="btn btn-danger bt">เช็คนัดลูกค้า</button></div></Link>
             <div className="btd"><button type="button" className="btn btn-danger bt">นัดครั้งถัดไป</button></div>
       </div>
     </div>

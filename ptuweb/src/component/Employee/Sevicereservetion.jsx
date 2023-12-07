@@ -6,28 +6,57 @@ import "../../Css/Serviceall.css"
 import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
 import Addservice from "./Addservice";
-import ReservetionE from "./ReservetionE";
 
-function Serviceall() {
+function Servicereservetion(Send) {
   const params = useParams();
-  const Customerid = params.id;
+  const reservetionid = params.id;
   const Employeeid = params.Em;
   const [dateservice, Setdateservice] = useState([]);
+  const [reservetion, Setreservetion] = useState([]);
   const [istig,SetIsTing] = useState(false)
-  const [istig2,SetIsTing2] = useState(false)
-  console.log("customerid"+Customerid)
+
+  console.log("reservetionid"+reservetionid)
   console.log("Employeeid"+Employeeid)
   useEffect(() => {
+    Loadreservetion();
+  }, [reservetionid]);
+  useEffect(() => {
     Loadservice();
-  }, [Customerid]);
-
+    Removereservetion()
+  }, [reservetion]);
   const Loadservice = () => {
     axios
-      .get("http://localhost:3001/readidervice/" + Customerid)
+      .get("http://localhost:3001/readidervice/" + reservetion.customerid)
       .then((res) => {
         Setdateservice(res.data);
         console.log(res.data);
-      
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const Loadreservetion= () => {
+    console.log(reservetionid)
+    axios
+      .get("http://localhost:3001/readreservetionId/" + reservetionid)
+      .then((res) => {
+        Setreservetion(res.data[0]);
+        console.log("re"+res.data);
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  
+  const Removereservetion= () => {
+    console.log(reservetion.reservetionid)
+    axios
+      .delete("http://localhost:3001/removereservetion/" + reservetion.reservetionid)
+      .then((res) => {
+        
+        console.log("remove"+res.data);
+        
       })
       .catch((err) => {
         console.log(err);
@@ -131,7 +160,7 @@ function Serviceall() {
   return (
     <>
       <div className="header">
-            <h1 className="profile">Service </h1>
+            <h1 className="profile">Service {reservetion.name} </h1>
           </div>
       <div className="boxzero">
         <div className="boxone">
@@ -187,14 +216,9 @@ function Serviceall() {
       <div className="Serviceallbt"> 
       <button type="button" className="btn btn-info" onClick={()=>SetIsTing(!istig)}>Add Service</button> 
       </div>
-      <div className="Serviceallbt"> 
-      <button type="button" className="btn btn-info" onClick={()=>SetIsTing2(!istig2)}>Add Reservetion
-      </button> 
-      </div>
-      {istig && <Addservice employeeid={Employeeid} customerId={Customerid}/> }
-      {istig2 && <ReservetionE  customerId={Customerid}/> }
+      {istig && <Addservice employeeid={Employeeid} customerId={reservetion.customerid}/> }
     </>
   );
 }
 
-export default Serviceall;
+export default Servicereservetion;

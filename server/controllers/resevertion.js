@@ -45,6 +45,30 @@ exports.readreservetion = async (req, res) => {
     }
 };
 
+
+exports.readreservetionId = async (req, res) => {
+    try {
+        const reservertionid = req.params.id
+        await db.query(
+            `
+        SELECT *
+        FROM reservetion
+        WHERE reservetionid = ?`,
+        reservertionid,
+            (err, result) => {
+                try {
+                    res.send(result);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error <read>");
+    }
+};
+
 exports.updatereservetion = async (req, res) => {
     try {
         const reservertionid = req.body.reservetionid

@@ -241,9 +241,10 @@ else if(countcarpart == ''){
             </div>
           </form>
           <div className="submibb a">
-            <button type="submit" className="btservice" onClick={handleSubmit}>
+          <button type="button" class="btn btn-danger bt"  onClick={handleSubmit}>ยืนยันการจอง</button>
+            {/* <button type="submit" className="btservice" onClick={handleSubmit}>
               ยืนยัน
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

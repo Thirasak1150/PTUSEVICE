@@ -4,13 +4,19 @@ import "../../Css/Sevice.css";
 import { useParams } from "react-router-dom";
 import "../../Css/Serviceall.css";
 import Swal from "sweetalert2";
-
+import { Link } from "react-router-dom";
+import ReservetionE from "./ReservetionE";
 function Readresevesion() {
-  const [dateservice, Setdateservice] = useState([]);
+    const params = useParams();
+  const Employee = params.id;
+
+    console.log(Employee)
+  const [resevetion, Setresevetion] = useState([]);
   const [username, setUsername] = useState("");
   const [isTog, setIsTog] = useState(false);
   const [isTog2, setIsTog2] = useState(false);
-  const [dateservicee, Setdateservicee] = useState({});
+  const [isTog3, setIsTog3] = useState(false);
+
   const Updatestatus = (id) => {
     console.log("id " + id);
     const swalWithBootstrapButtons = Swal.mixin({
@@ -90,10 +96,10 @@ function Readresevesion() {
             icon: "success",
           });
           axios
-            .delete("http://localhost:3001/removeservice/" + id)
+            .delete("http://localhost:3001/removereservetion/" + id)
             .then((res) => {
               console.log(res);
-              Loaddataservice();
+              Loadresevetion();
             })
             .catch((err) => {
               console.log(err);
@@ -110,11 +116,11 @@ function Readresevesion() {
         }
       });
   };
-  const Loaddataservice = () => {
+  const Loadresevetion = () => {
     axios
-      .get("http://localhost:3001/readusernameservice/" + username)
+      .get("http://localhost:3001/readreservetion/" + username)
       .then((res) => {
-        Setdateservice(res.data);
+        Setresevetion(res.data);
         console.log(res);
         setIsTog(true);
       })
@@ -141,31 +147,31 @@ function Readresevesion() {
                 </tr>
               </thead>
               
-                {dateservice.map((item, index) => {
+                {resevetion.map((item, index) => {
                   return (
                     <tbody>
                     <tr key={index}>
-                      <th scope="row">{item.servicename}</th>
+                      <th scope="row">{item.name}</th>
 
-                      <th scope="row">{item.usernamecustomer}</th>
                       <th scope="row">{item.date}</th>
+                      <th scope="row">{item.customerid}</th>
                       <th scope="row">{item.time}</th>
 
-                      <th scope="row">{item.statusservice} </th>
+                      <th scope="row">{item.carid} </th>
 
                       <th scope="row">
-                        <button
+                        <Link to={"/Servicereservetion/"+item.reservetionid+"/"+Employee}><button
                           type="button"
-                          className="btn btn-success"
-                          onClick={() => Updatestatus(item.serviceid)}
+                          class="btn btn-warning"
+                          
                         >
-                          Success
-                        </button>
+                          Service
+                        </button></Link>
 
                         <button
                           type="button"
                           className="btn btn-danger btdd"
-                          onClick={() => Deleteservice(item.serviceid)}
+                          onClick={() => Deleteservice(item.reservetionid)}
                         >
                           Delete
                         </button>
@@ -186,7 +192,7 @@ function Readresevesion() {
   return (
     <>
       <div className="header">
-        <h1 className="profile">Check Service</h1>
+        <h1 className="profile">นัดหมายลูกค้า</h1>
       </div>
       <div className="ct">
         <div className="ct2">
@@ -207,11 +213,24 @@ function Readresevesion() {
               <button
                 type="button"
                 className="btn btn-outline-danger"
-                onClick={() => Loaddataservice()}
+                onClick={() => Loadresevetion()}
               >
                 ค้นหา
               </button>
+              <div  style={{marginTop:"7px"}}>
+              <button
+                type="button"
+                className="btn btn-outline-success" 
+               
+                onClick={() => setIsTog3(!isTog3)}
+              >
+                จองคิวให้ลูกค้า
+              </button>
+
+              </div>
+             
             </div>
+            {isTog3 && <ReservetionE  customerId={username}/> }
             <div>{isTog2 && inputserivce()}</div>
           </form>
         </div>
