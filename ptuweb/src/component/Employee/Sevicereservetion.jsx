@@ -6,6 +6,7 @@ import "../../Css/Serviceall.css"
 import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
 import Addservice from "./Addservice";
+import ReservetionE from "./ReservetionE";
 
 function Servicereservetion(Send) {
   const params = useParams();
@@ -14,7 +15,8 @@ function Servicereservetion(Send) {
   const [dateservice, Setdateservice] = useState([]);
   const [reservetion, Setreservetion] = useState([]);
   const [istig,SetIsTing] = useState(false)
-
+  const [istig3,SetIsTing3] = useState(false)
+ 
   console.log("reservetionid"+reservetionid)
   console.log("Employeeid"+Employeeid)
   useEffect(() => {
@@ -160,7 +162,7 @@ function Servicereservetion(Send) {
   return (
     <>
       <div className="header">
-            <h1 className="profile">Service {reservetion.name} </h1>
+            <h1 className="profile">Service </h1>
           </div>
       <div className="boxzero">
         <div className="boxone">
@@ -216,7 +218,11 @@ function Servicereservetion(Send) {
       <div className="Serviceallbt"> 
       <button type="button" className="btn btn-info" onClick={()=>SetIsTing(!istig)}>Add Service</button> 
       </div>
-      {istig && <Addservice employeeid={Employeeid} customerId={reservetion.customerid}/> }
+      <div className="Serviceallbt"> 
+      <button type="button" className="btn btn-info" onClick={()=>SetIsTing3(!istig)}>Add Reseritin</button> 
+      </div>
+      {istig3 && <ReservetionE  customerId={reservetion.customerid}/> }
+      {istig && <Addservice employeeid={Employeeid} customerId={reservetion.usernamecustomer}/> }
     </>
   );
 }

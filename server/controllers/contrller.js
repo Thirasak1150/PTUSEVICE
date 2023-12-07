@@ -180,7 +180,7 @@ exports.update = async (req, res) => {
         const tel_member = req.body.tel_member;
 
         const updateData = `
-        UPDATE car 
+        UPDATE members 
         SET fname = ?, surname = ?, username = ?, password = ?,tel_member = ?
         WHERE id_member = ?`;
         await db.query(

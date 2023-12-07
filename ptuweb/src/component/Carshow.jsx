@@ -54,6 +54,7 @@ function Editp(data) {
       .then((res) => {
         console.log(res.data);
         LoadData();
+        window.location = "/ProfileC/"+data.data.id_member;
       })
       .catch((err) => {
         console.log(err);
@@ -65,7 +66,7 @@ function Editp(data) {
       [e.target.name]: e.target.value,
     });
   };
-  function t() {
+  const t =()=> {
     return (
       <>
         <div className="row df s md0">
@@ -128,16 +129,17 @@ function Editp(data) {
       });
   }
   function s(id) {
-    setDe(id);
-    console.log(editid);
+    setEditid(id);
+    console.log("Edit "+editid);
 
     datae.map((item, i) => {
       if (item.carid == editid) {
         setFrom(datae[i]);
+        setIsTog3(true);
       }
     });
 
-    setIsTog3(true);
+   
   }
   function che() {
     return (
@@ -187,7 +189,7 @@ function Editp(data) {
                   className="bt"
                   onClick={() => s(item.carid)}
                 >
-                  แก้ไขรถ ID{item.carid}
+                  แก้ไขรถ carID:{item.carid}
                 </button>
               </div>
               <div className="b">

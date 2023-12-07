@@ -131,18 +131,30 @@ function Readresevesion() {
   const Check = () => {
     return (
       <>
+               <div className="mb-3 Serviceallbt">
+              <button
+                type="button"
+                className="btn btn-outline-danger"
+                onClick={() => setIsTog3(!isTog3)}
+              >
+                จองคิวให้ลูกค้า username:{username}
+              </button>
+         
+             
+            </div>
+            {isTog3 && <ReservetionE  customerId={username}/> }
         <div className="boxzero">
           <div className="boxone">
             <table className="table ">
               <thead>
                 <tr>
-                  <th scope="col">รายการที่ทำ</th>
+                  <th scope="col">ต้องการทำ</th>
 
-                  <th scope="col">CustomerId</th>
                   <th scope="col">Date</th>
+                  <th scope="col">Username</th>
                   <th scope="col">Time</th>
-                  <th scope="col">Status</th>
-                  <th scope="col"></th>
+                  <th scope="col">รายละเอียด</th>
+                  <th scope="col">เบอร์โทรศัพท์</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -158,7 +170,7 @@ function Readresevesion() {
                       <th scope="row">{item.time}</th>
 
                       <th scope="row">{item.carid} </th>
-
+                      <th scope="row">{item.tel} </th>
                       <th scope="row">
                         <Link to={"/Servicereservetion/"+item.reservetionid+"/"+Employee}><button
                           type="button"
@@ -217,20 +229,10 @@ function Readresevesion() {
               >
                 ค้นหา
               </button>
-              <div  style={{marginTop:"7px"}}>
-              <button
-                type="button"
-                className="btn btn-outline-success" 
-               
-                onClick={() => setIsTog3(!isTog3)}
-              >
-                จองคิวให้ลูกค้า
-              </button>
-
-              </div>
+         
              
             </div>
-            {isTog3 && <ReservetionE  customerId={username}/> }
+           
             <div>{isTog2 && inputserivce()}</div>
           </form>
         </div>

@@ -14,8 +14,6 @@ function ProfileC() {
   const [isTog,setIsTog] = useState(false)
   const [isTog2,setIsTog2] = useState(false)
   const [isTog3,setIsTog3] = useState(false)
-  const navigate = useNavigate();
-  // const [e, serE] = useState("");
   const [data, setData] = useState({
     id_member:id,
     fname: "",
@@ -40,22 +38,6 @@ function ProfileC() {
         console.log(err);
       });
   };
-  const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async () => {
-    axios
-      .put("http://localhost:3001/member/" + id, data)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
-  
 
   return (
     <>
