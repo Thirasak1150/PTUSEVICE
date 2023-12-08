@@ -69,7 +69,7 @@ function Homeadmin() {
       <div className="conin">
            <Link to={"/Editmember"}>  <div className="btd"><button type="button" className="btn btn-danger bt">จัดการสิทธิ์สามาชิก</button></div></Link>
             <Link to="/EditStock">  <div className="btd"><button type="button" className="btn btn-danger bt">เพิ่ม-ลบ สินค้า</button></div></Link>
-            <Link to="/EditStock"><div className="btd"><button type="button" class="btn btn-danger bt">เช็คนัดลูกค้า</button></div></Link>
+            <Link to="/EditStock"><div className="btd"><button type="button" class="btn btn-danger bt">เช็คอะไหล่</button></div></Link>
             <Link to={"/ProfileE/"+id}><div className="btd"><button type="button" className="btn btn-danger bt">
               โปรไฟล์
             </button></div></Link>
