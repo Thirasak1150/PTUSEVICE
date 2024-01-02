@@ -218,7 +218,9 @@ else if(countcarpart == ''){
                 className="form-control"
                 value={Carpartidset}
                 onChange={(e) => setCarpartid(e.target.value)}
-              >
+              > <option value={''}>
+              เลือกอะไหล่รถยนต์
+             </option>
                 {datacarpart.map((item, index) => {
                   return (
                     <>

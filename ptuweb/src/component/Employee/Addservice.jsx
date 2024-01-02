@@ -157,13 +157,13 @@ else if(countcarpart == ''){
               <select
                 className="form-control"
                 onChange={(e) => setCarid(e.target.value)}
-              >
+              > <option  value={''}>
+              เลือกรถยนต์
+             </option>
                 {datae.map((item, index) => {
                   return (
                     <>     
-                    <option key={index} value={''}>
-                   เลือกรถยนต์
-                  </option>
+                   
                       <option key={index} value={item.carid}>
                         {item.carid} {item.bandcar} {item.details}
                       </option>
@@ -207,6 +207,9 @@ else if(countcarpart == ''){
                 value={Carpartidset}
                 onChange={(e) => setCarpartid(e.target.value)}
               >
+                 <option value={''}>
+                   เลือกรถยนต์
+                  </option>
                 {datacarpart.map((item, index) => {
                   return (
                     <>

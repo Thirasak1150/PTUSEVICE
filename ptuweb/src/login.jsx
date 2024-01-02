@@ -146,7 +146,7 @@ export default function SignInSide() {
                 fullWidth
                 name="password"
                 label="Password"
-                type="text"
+                type="password"
                 id="password"
                 autoComplete="current-password"
               />

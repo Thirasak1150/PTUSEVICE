@@ -15,6 +15,7 @@ function ReservetionE(props) {
 const [date,setDate] = useState('')
 const [time,setTime] = useState('')
 const [detail,setDetil] = useState('')
+console.log(props.customerId)
 const [carid,setCarid] = useState('')
     useEffect(() => {
         LoadData2();
@@ -31,7 +32,7 @@ const [carid,setCarid] = useState('')
         date: date,
         time: time, 
         detail:detail,
-        username:props.username,
+        username:props.customerId,
         carid:carid
       })
       .then((res) => {
@@ -50,7 +51,7 @@ const [carid,setCarid] = useState('')
   };
     const LoadData2 = async () => {
         axios
-          .get("http://localhost:3001/car/" + props.username)
+          .get("http://localhost:3001/car/" + props.customerId)
           .then((res) => {
           
             setOptions(res.data);
@@ -73,7 +74,8 @@ const [carid,setCarid] = useState('')
             <select className="form-control"  onChange={e=>setCarid(e.target.value)} >
             {options.map((item, index) => {
               return <>
-               <option key={index} value={item.carid}>{item.carid} {item.bandcar} {item.details}</option>
+               <option key={index} value={item.carid}>
+                {item.carid} {item.bandcar} {item.details}</option>
               </>
              
             })}
@@ -104,6 +106,7 @@ const [carid,setCarid] = useState('')
             <label className="form-label">Sevice</label>
           
             <select className="form-control" value={name} onChange={e=>setName(e.target.value)} >
+            <option >เลือก service</option>
             <option >ล้างทำความสะอาดภายนอกเเละภายใน</option>
               <option >ถ่ายน้ำมันเครื่องของเหลวต่างๆ</option>
               <option >ตรวจเช็คสภาพ</option>

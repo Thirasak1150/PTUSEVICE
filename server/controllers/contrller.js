@@ -85,8 +85,6 @@ exports.read = async (req, res) => {
         res.status(500).send("Server Error <read>");
     }
 };
-
-
 exports.readusername = async (req, res) => {
     try {
         const username = req.params.id;
@@ -109,7 +107,6 @@ exports.readusername = async (req, res) => {
         res.status(500).send("Server Error <read>");
     }
 };
-
 exports.list = async (req, res) => {
     try {
         await db.query(
@@ -133,21 +130,13 @@ exports.list = async (req, res) => {
         res.status(500).send("Server Error <list>");
     }
 };
-
 exports.create = (req, res) => {
-
-
-
     const fname = req.body.fname;
     const surname = req.body.surname;
     const username = req.body.username;
     const password = req.body.password;
     const tel_member = req.body.tel_member;
     const assess_right = 'customer';
-
-
-
-
     db.query(
         `SELECT * FROM members WHERE username = ? `,
         [username],

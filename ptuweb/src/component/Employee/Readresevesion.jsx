@@ -16,8 +16,8 @@ function Readresevesion() {
   const [isTog, setIsTog] = useState(false);
   const [isTog2, setIsTog2] = useState(false);
   const [isTog3, setIsTog3] = useState(false);
-  const [isTog4, setIsTog4] = useState(true);
-
+  const [isTog4, setIsTog4] = useState(false);
+  const [listreser,setlistre] = useState([])
   const Updatestatus = (id) => {
     console.log("id " + id);
     const swalWithBootstrapButtons = Swal.mixin({
@@ -68,7 +68,9 @@ function Readresevesion() {
         }
       });
   };
-  
+  useEffect(() => {
+    Loadlist();
+  }, []);
 
   const Deleteservice = (id) => {
     console.log("id " + id);
@@ -124,12 +126,83 @@ function Readresevesion() {
         Setresevetion(res.data);
         console.log(res);
         setIsTog(true);
+        setIsTog4(!isTog4)
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  
+  const Loadlist = () => {
+    axios
+      .get("http://localhost:3001/listreservetion")
+      .then((res) => {
+        setlistre(res.data);
+        console.log("ch "+res.data);
+        setIsTog4(!isTog4)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };  const showlistre = () => {
+   return(<>
+    <div className="boxzero">
+          <div className="boxone">
+            <table className="table ">
+              <thead>
+                <tr>
+                  <th scope="col">ต้องการทำ</th>
+
+                  <th scope="col">Date</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">รายละเอียด</th>
+                  <th scope="col">เบอร์โทรศัพท์</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              
+                {listreser.map((item, index) => {
+                  return (
+                    <tbody>
+                    <tr key={index}>
+                      <th scope="row">{item.name}</th>
+
+                      <th scope="row">{item.date}</th>
+                      <th scope="row">{item.customerid}</th>
+                      <th scope="row">{item.time}</th>
+
+                      <th scope="row">{item.carid} </th>
+                      <th scope="row">{item.tel} </th>
+                      <th scope="row">
+                        <Link to={"/Servicereservetion/"+item.reservetionid+"/"+Employee}><button
+                          type="button"
+                          class="btn btn-warning"
+                          
+                        >
+                          Service
+                        </button></Link>
+
+                        <button
+                          type="button"
+                          className="btn btn-danger btdd"
+                          onClick={() => Deleteservice(item.reservetionid)}
+                        >
+                          Delete
+                        </button>
+
+                  
+                      </th>
+                    </tr>
+                    </tbody>
+                  );
+                })}
+             
+            </table>
+          </div>
+        </div>
+   
+   </>)
+  };
   const Check = () => {
     return (
       <>
@@ -144,7 +217,7 @@ function Readresevesion() {
          
              
             </div>
-            {isTog3 && <ReservetionE  username={username}/> }
+            {isTog3 && <ReservetionE  customerId={username}/> }
         <div className="boxzero">
           <div className="boxone">
             <table className="table ">
@@ -168,7 +241,7 @@ function Readresevesion() {
                       <th scope="row">{item.name}</th>
 
                       <th scope="row">{item.date}</th>
-                      <th scope="row">{item.customerid}</th>
+                      <th scope="row">{item.username}</th>
                       <th scope="row">{item.time}</th>
 
                       <th scope="row">{item.carid} </th>
@@ -240,6 +313,7 @@ function Readresevesion() {
         </div>
       </div>
       <div>{isTog && Check()}</div>
+      <div>{isTog4 && showlistre()}</div>
     </>
   );
 }
